@@ -13,16 +13,15 @@ namespace Calculator
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        long storedResult = 0;
-        int state = 0;
-        int prevOperation;
+        long storedResult = 0, prevNum = 0;
+        int state = 0, prevOperation = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        void SelectNumber(object sender, EventArgs e)
+        void OnNumberButtonClicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             string btnText = button.Text;
@@ -36,18 +35,15 @@ namespace Calculator
             }
 
             else this.lblResult.Text += btnText;
-
-
-
         }
 
-        void ClearLabel(object sender, EventArgs e)
+        void OnClearButtonClicked(object sender, EventArgs e)
         {
             this.lblResult.Text = "0";
             this.state = 0;
         }
 
-        void SelectOperator(object sender, EventArgs e)
+        void OnOperatorButtonClicked(object sender, EventArgs e)
         {
 
             Button button = (Button)sender;
@@ -61,7 +57,7 @@ namespace Calculator
 
             if (this.state == 2)
             {
-                Calculate();
+                Calculate(Convert.ToInt64(this.lblResult.Text));
             }
 
 
@@ -85,38 +81,42 @@ namespace Calculator
             }
         }
 
-        void Calculate()
+        void Calculate(long num2)
         {
-                long num2 = Convert.ToInt64(this.lblResult.Text);
 
-                switch (prevOperation)
-                {
-                    case 0:
-                        this.storedResult /= num2;
-                        break;
+            switch (prevOperation)
+            {
+                case 0:
+                    this.storedResult /= num2;
+                    break;
 
-                    case 1:
-                        this.storedResult += num2;
-                        break;
+                case 1:
+                    this.storedResult += num2;
+                    break;
 
-                    case 2:
-                        this.storedResult -= num2;
-                        break;
+                case 2:
+                    this.storedResult -= num2;
+                    break;
 
-                    case 3:
-                        this.storedResult *= num2;
-                        break;
-                }
+                case 3:
+                    this.storedResult *= num2;
+                    break;
+            }
 
-                this.lblResult.Text = Convert.ToString(this.storedResult);
-                this.state = 1;
-         
+            this.lblResult.Text = Convert.ToString(this.storedResult);
+            this.state = 1;
+
+            prevNum = num2;
+
         }
 
-        void ShowResult(object sender, EventArgs e)
+        void OnEqualButtonClicked(object sender, EventArgs e)
         {
-            Calculate();
-            this.lblResult.Text = Convert.ToString(this.storedResult);           
+            if (this.state == 1) Calculate(this.prevNum);
+
+            else Calculate(Convert.ToInt64(this.lblResult.Text));
+
+            this.lblResult.Text = Convert.ToString(this.storedResult);
         }
 
     }

@@ -49,26 +49,26 @@
         <Label x:Name="lblResult" Grid.Row="0" Grid.Column="0" FontSize="48" Text="0" TextColor="White" HorizontalTextAlignment="End" 
                VerticalTextAlignment="Center" LineBreakMode="NoWrap" Grid.ColumnSpan="4" />
 
-        <Button Text="7" Grid.Row="1" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="1" Grid.Row="3" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="C" Grid.Row="4" Grid.Column="0" Style="{StaticResource btnClear}" Clicked="ClearLabel" />
-        
-        <Button Text="8" Grid.Row="1" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="5" Grid.Row="2" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="2" Grid.Row="3" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="0" Grid.Row="4" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        
-        <Button Text="9" Grid.Row="1" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="6" Grid.Row="2" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="3" Grid.Row="3" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="SelectNumber" />
-        <Button Text="=" Grid.Row="4" Grid.Column="2" Style="{StaticResource btnResult}" Clicked="ShowResult" />
-        
-        <Button Text="÷" Grid.Row="1" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="SelectOperator" />
-        <Button Text="x" Grid.Row="2" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="SelectOperator" />
-        <Button Text="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="SelectOperator" />
-        <Button Text="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="SelectOperator" />
-        <Button Text="Historial" Grid.Row="5" Grid.Column="0" Style="{StaticResource btnOperator}" Clicked="SelectOperator" Grid.ColumnSpan="4"/>
+        <Button Text="7" Grid.Row="1" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="1" Grid.Row="3" Grid.Column="0" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="C" Grid.Row="4" Grid.Column="0" Style="{StaticResource btnClear}" Clicked="OnClearButtonClicked" />
+
+        <Button Text="8" Grid.Row="1" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="5" Grid.Row="2" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="2" Grid.Row="3" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="0" Grid.Row="4" Grid.Column="1" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+
+        <Button Text="9" Grid.Row="1" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="6" Grid.Row="2" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="3" Grid.Row="3" Grid.Column="2" Style="{StaticResource btnStyle}" Clicked="OnNumberButtonClicked" />
+        <Button Text="=" Grid.Row="4" Grid.Column="2" Style="{StaticResource btnResult}" Clicked="OnEqualButtonClicked" />
+
+        <Button Text="÷" Grid.Row="1" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
+        <Button Text="x" Grid.Row="2" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
+        <Button Text="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
+        <Button Text="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
+        <Button Text="Historial" Grid.Row="5" Grid.Column="0" Style="{StaticResource btnOperator}" Clicked="OnEqualButtonClicked" Grid.ColumnSpan="4"/>
 
 
     </Grid>
