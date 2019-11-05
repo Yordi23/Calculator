@@ -13,7 +13,9 @@ namespace Calculator
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        int storedResult = 0;
+        long storedResult = 0;
+        int state = 0;
+        int prevOperation;
 
         public MainPage()
         {
@@ -25,31 +27,96 @@ namespace Calculator
             Button button = (Button)sender;
             string btnText = button.Text;
 
-            if (this.lblResult.Text == "0")
+            if (this.lblResult.Text == "0" || this.state == 1)
             {
                 this.lblResult.Text = btnText;
-                return;
+
+                if (this.state == 1) this.state = 2;
+
             }
 
-            this.lblResult.Text += btnText;
+            else this.lblResult.Text += btnText;
+
+
+
         }
 
         void ClearLabel(object sender, EventArgs e)
         {
             this.lblResult.Text = "0";
+            this.state = 0;
         }
 
         void SelectOperator(object sender, EventArgs e)
         {
-            storedResult = Convert.ToInt32(this.lblResult.Text);
 
             Button button = (Button)sender;
             string btnText = button.Text;
 
+            if (this.state == 0)
+            {
+                storedResult = Convert.ToInt64(this.lblResult.Text);
+                this.state = 1;
+            }
+
+            if (this.state == 2)
+            {
+                Calculate();
+            }
+
+
             switch (btnText)
             {
-                case ""
+                case "÷":
+                    this.prevOperation = 0;
+                    break;
+
+                case "+":
+                    this.prevOperation = 1;
+                    break;
+
+                case "-":
+                    this.prevOperation = 2;
+                    break;
+
+                case "x":
+                    this.prevOperation = 3;
+                    break;
             }
+        }
+
+        void Calculate()
+        {
+                long num2 = Convert.ToInt64(this.lblResult.Text);
+
+                switch (prevOperation)
+                {
+                    case 0:
+                        this.storedResult /= num2;
+                        break;
+
+                    case 1:
+                        this.storedResult += num2;
+                        break;
+
+                    case 2:
+                        this.storedResult -= num2;
+                        break;
+
+                    case 3:
+                        this.storedResult *= num2;
+                        break;
+                }
+
+                this.lblResult.Text = Convert.ToString(this.storedResult);
+                this.state = 1;
+         
+        }
+
+        void ShowResult(object sender, EventArgs e)
+        {
+            Calculate();
+            this.lblResult.Text = Convert.ToString(this.storedResult);           
         }
 
     }
