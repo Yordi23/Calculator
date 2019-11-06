@@ -68,7 +68,7 @@
         <Button Text="x" Grid.Row="2" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
         <Button Text="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
         <Button Text="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource btnOperator}" Clicked="OnOperatorButtonClicked" />
-        <Button Text="Historial" Grid.Row="5" Grid.Column="0" Style="{StaticResource btnOperator}" Clicked="OnEqualButtonClicked" Grid.ColumnSpan="4"/>
+        <Button Text="Historial" Grid.Row="5" Grid.Column="0" Style="{StaticResource btnOperator}" Clicked="OnHistoryButtonClicked" Grid.ColumnSpan="4"/>
 
 
     </Grid>

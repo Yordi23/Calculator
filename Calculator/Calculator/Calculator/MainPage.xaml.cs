@@ -119,5 +119,11 @@ namespace Calculator
             this.lblResult.Text = Convert.ToString(this.storedResult);
         }
 
+        async void OnHistoryButtonClicked(object sender, EventArgs e)
+        {
+            var historyPage = new HistoryPage();
+            await Navigation.PushModalAsync(historyPage);
+        }
+
     }
 }
