@@ -14,7 +14,7 @@ namespace Calculator.Droid
             get
             {
                 string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                string extendedPath = Path.Combine(path, "DAGDB.db3");
+                string extendedPath = Path.Combine(path, "Calculator.db3");
                 SQLiteConnection connection = new SQLiteConnection(extendedPath, true);
                 return connection;
             }

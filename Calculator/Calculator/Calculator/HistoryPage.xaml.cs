@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace Calculator
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage : ContentPage
     {
+        DataAccess dataAccess = new DataAccess();
         public HistoryPage()
         {
             InitializeComponent();
+            var sourceData = dataAccess.GetLogs();
+            listLog.ItemsSource = sourceData;
         }
     }
 }

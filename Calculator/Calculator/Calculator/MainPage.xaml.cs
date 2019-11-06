@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Calculator.Model;
+using Calculator.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,8 +15,14 @@ namespace Calculator
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        DataAccess dataAccess = new DataAccess();
+        Log log = new Log();
+
         long storedResult = 0, prevNum = 0;
         int state = 0, prevOperation = 0;
+
+        string expression = "";
+        
 
         public MainPage()
         {
@@ -45,19 +53,22 @@ namespace Calculator
 
         void OnOperatorButtonClicked(object sender, EventArgs e)
         {
-
             Button button = (Button)sender;
             string btnText = button.Text;
 
+            string lblText = this.lblResult.Text;
+            
+            this.expression += lblText + btnText;
+
             if (this.state == 0)
             {
-                storedResult = Convert.ToInt64(this.lblResult.Text);
+                storedResult = Convert.ToInt64(lblText);
                 this.state = 1;
             }
 
             if (this.state == 2)
             {
-                Calculate(Convert.ToInt64(this.lblResult.Text));
+                Calculate(Convert.ToInt64(lblText));
             }
 
 
@@ -114,15 +125,31 @@ namespace Calculator
         {
             if (this.state == 1) Calculate(this.prevNum);
 
-            else Calculate(Convert.ToInt64(this.lblResult.Text));
+            else
+            {
+                this.expression += this.lblResult.Text;
+                Calculate(Convert.ToInt64(this.lblResult.Text));
+            }
 
             this.lblResult.Text = Convert.ToString(this.storedResult);
+
+            SaveLog();
         }
 
         async void OnHistoryButtonClicked(object sender, EventArgs e)
         {
             var historyPage = new HistoryPage();
             await Navigation.PushModalAsync(historyPage);
+        }
+
+        void SaveLog()
+        {
+            log.expression = this.expression;
+            log.result = Convert.ToString(this.storedResult);
+            //log.date = DateTime.Now;
+
+            dataAccess.AddLog(log);
+
         }
 
     }

@@ -18,9 +18,14 @@ namespace Calculator.Service
             _SQLiteConnection = DependencyService.Get<ISQLiteInterface>().Connection;
             _SQLiteConnection.CreateTable<Log>();
         }
-        public IEnumerable<Log> GetUsers()
+        public IEnumerable<Log> GetLogs()
         {
             return (from x in _SQLiteConnection.Table<Log>()select x).ToList();
+        }
+
+        public void AddLog(Log log)
+        {
+            _SQLiteConnection.Insert(log);
         }
     }
 }

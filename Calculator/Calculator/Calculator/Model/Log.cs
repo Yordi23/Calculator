@@ -11,6 +11,7 @@ namespace Calculator.Model
         public int Id { get; set; }
         public string expression { get; set; }
         public string result { get; set; }
+        //public DateTime date { get; set; }
 
     }
 }
