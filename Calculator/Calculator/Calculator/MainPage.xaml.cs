@@ -31,10 +31,14 @@ namespace Calculator
 
         void OnNumberButtonClicked(object sender, EventArgs e)
         {
+            string lblTxt = this.lblResult.Text;
+
+            if (lblTxt.Length == 13 && this.state != 1) return;
+
             Button button = (Button)sender;
             string btnText = button.Text;
 
-            if (this.lblResult.Text == "0" || this.state == 1)
+            if (lblTxt == "0" || this.state == 1)
             {
                 this.lblResult.Text = btnText;
 
@@ -134,6 +138,7 @@ namespace Calculator
             this.lblResult.Text = Convert.ToString(this.storedResult);
 
             SaveLog();
+            this.expression = "";
         }
 
         async void OnHistoryButtonClicked(object sender, EventArgs e)
